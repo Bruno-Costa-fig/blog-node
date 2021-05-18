@@ -1,0 +1,55 @@
+<%- include("../../partials/header.ejs") %>
+<body>
+    <%- include("../../partials/navbar.ejs") %>
+    <div class="container">
+        <hr>
+        <!--
+            * Aqui temos o card da página de criação de artigos que é
+            acessada pelo admin.
+
+            * nele temos ainda um campo textarea com o tinyMCE para 
+            formatação de texto que está traduzido para português.
+
+        -->
+        <div class="card">
+            <div class="card-header">
+                <h2>Novo artigo:</h2>
+            </div>
+            <div class="card-body">
+                <form method="POST" action="/articles/save">
+                    <input class="form-control" type="text" name="title" id="title" placeholder="Defina o título do artigo" required><br>
+                    <textarea name="body" class="form-control" placeholder="Escreva um artigo aqui" id="article"></textarea><br>
+                    <label>Categoria:</label>
+                    <select name="category" class="form-control">
+                        <!-- Faz uma option para cada categoria dinamicamente-->
+                        <% categories.forEach((category)=>{ %>
+                            <!--    
+                                renderiza a categoria junto com o id para o
+                                backend poder relacionar cada article a sua respec-
+                                tiva categoria
+                            -->
+                            <option value="<%= category.id %>"><%= category.title %></option>
+                        <% }) %>
+                    </select><br>
+                    <button class="btn btn-success" type="submit">Cadastrar</button>
+                </form>
+            </div>
+        </div>        
+    </div>
+</body>
+<%- include("../../partials/footer.ejs") %>
+<script src="/tinymce/tinymce.min.js"></script>
+<script>
+
+    tinymce.init({
+        // define a linguagem
+        language: 'pt_BR',
+        // seleciona qual quando vai receber a formatação
+        selector: "#article",
+        // instala alguns plugins úteis
+        plugins:[
+            'advlist autolink link image lists print preview hr searchreplace wordcount fullscreen insertdatetime media save table paste emoticons'
+        ]
+    })
+
+</script>

@@ -1,0 +1,57 @@
+<%- include("../../partials/header.ejs") %>
+<body>
+    <%- include("../../partials/navbar.ejs") %>
+    <div class="container">
+        <hr>
+        <!--
+            * Aqui temos o card da página de edição dos artigos que é
+            acessada pelo admin.
+
+        -->
+        <div class="card">
+            <div class="card-header">
+                <h2>Atualizar artigo:</h2>
+            </div>
+            <div class="card-body">
+                <form method="POST" action="/articles/update">
+                    <input class="form-control" type="text" name="title" id="title" value="<%= article.title %>"><br>
+                    <textarea class="form-control" name="body" id="body"><%= article.body %></textarea>
+                    <input type="hidden" name="id" value="<%= article.id %>">
+                    <select name="category" class="form-control">
+                        <!-- Faz uma option para cada categoria dinamicamente-->
+                        <% categories.forEach((category)=>{ %>
+                            <!--    
+                                renderiza a categoria junto com o id para o
+                                backend poder relacionar cada article a sua respec-
+                                tiva categoria
+                            -->
+                        <% if(category.id == article.categoryId) { %>
+                            <option value="<%= category.id %>" selected><%= category.title %></option>
+                        <% } else { %>
+                            <option value="<%= category.id %>"><%= category.title %></option>
+                        <% } %>
+                            
+                        <% }) %>
+                    </select><br>
+                    <button class="btn btn-success" type="submit">Atualizar</button>
+                </form>
+            </div>
+        </div>        
+    </div>
+</body>
+<%- include("../../partials/footer.ejs") %>
+<script src="/tinymce/tinymce.min.js"></script>
+<script>
+
+    tinymce.init({
+        // define a linguagem
+        language: 'pt_BR',
+        // seleciona qual quando vai receber a formatação
+        selector: "#body",
+        // instala alguns plugins úteis
+        plugins:[
+            'advlist autolink link image lists print preview hr searchreplace wordcount fullscreen insertdatetime media save table paste emoticons'
+        ]
+    })
+
+</script>

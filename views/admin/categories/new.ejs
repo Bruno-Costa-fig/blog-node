@@ -1,0 +1,27 @@
+<%- include("../../partials/header.ejs") %>
+<body>
+    <%- include("../../partials/navbar.ejs") %>
+    <div class="container">
+        <hr>
+        <!--
+            * Aqui temos o card da página de criação de categorias que é
+            acessada pelo admin.
+
+            * optei por colocar no input um _required_ por que só a 
+            validação do if não está funcionando e o banco estava 
+            ficando com registros em branco
+        -->
+        <div class="card">
+            <div class="card-header">
+                <h2>Cadastro de categoria:</h2>
+            </div>
+            <div class="card-body">
+                <form method="POST" action="/categories/save">
+                    <input class="form-control" type="text" name="title" id="title" placeholder="Defina o tipo de categoria" required><br>
+                    <button class="btn btn-success" type="submit">Cadastrar</button>
+                </form>
+            </div>
+        </div>        
+    </div>
+</body>
+<%- include("../../partials/footer.ejs") %>

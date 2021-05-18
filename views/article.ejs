@@ -1,0 +1,21 @@
+<%- include("partials/header.ejs") %>
+<%- include("partials/homenavbar.ejs") %>
+<body>
+    <div class="container">
+    <br><div class="card">
+            <div class="card-header">
+               <h2><%= article.title %></h2>
+            </div>
+            <div class="card-body">
+                <!--
+                    # O artigo vem sem formatação nenhuma e precisamos formatá-lo.
+
+                    # Para isso, no lugar de recebermos a variável body com o =
+                    vamos utilizar o - que recebe os dados e formata eles.
+                -->
+                <%- article.body %>
+            </div>
+        </div>
+    </div>
+</body>
+<%- include("partials/footer.ejs") %>

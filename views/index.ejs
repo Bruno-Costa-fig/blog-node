@@ -1,0 +1,40 @@
+<!--
+
+    ==================== PÁGINA PRINCIPAL ===================
+
+    * esta é a página principal do blog
+
+-->
+
+<%- include("partials/header.ejs") %>
+<%- include("partials/homenavbar.ejs") %>
+<body>
+    
+    <div class="container">
+        <div class="jumbotron">
+            <h1 class="display-4">Bem-vindo!</h1>
+            <p class="lead">Este é um modelo de blog criado por Bruno Costa</p>
+            <hr class="my-4">
+            <p class="lead">
+              <a class="btn btn-primary btn-lg" href="github.com/Bruno-Costa-fig" role="button">Saiba mais</a>
+            </p>
+        </div>
+        <% articles.forEach(article =>{ %>
+            <div class="card">
+                <div class="card-header">
+                    <%= article.title %>
+                </div>
+                <div class="card-body">
+                    <!-- Passa o slug para redirecionar para a página de leitura-->
+                    <a href="/<%= article.slug %>" class="btn btn-success">Ler o artigo</a>
+                </div>
+            </div><br>
+        <% }); %>
+        <hr>
+        <div class="row">
+            <a href="/articles/page/2" style="text-decoration: none; text-align: right;">Próxima página ></a>
+        </div>
+        <hr>
+    </div>
+</body>
+<%- include("partials/footer.ejs") %>

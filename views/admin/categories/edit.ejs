@@ -1,0 +1,25 @@
+<%- include("../../partials/header.ejs") %>
+<body>
+    <%- include("../../partials/navbar.ejs") %>
+    <div class="container">
+        <hr>
+        <!--
+            * Aqui temos o card da página de edição de categorias que é
+            acessada pelo admin.
+
+        -->
+        <div class="card">
+            <div class="card-header">
+                <h2>Atualizar categoria:</h2>
+            </div>
+            <div class="card-body">
+                <form method="POST" action="/categories/update">
+                    <input class="form-control" type="text" name="title" id="title" value="<%= category.title %>"><br>
+                    <input type="hidden" name="id" value="<%= category.id %>">
+                    <button class="btn btn-success" type="submit">Atualizar</button>
+                </form>
+            </div>
+        </div>        
+    </div>
+</body>
+<%- include("../../partials/footer.ejs") %>
